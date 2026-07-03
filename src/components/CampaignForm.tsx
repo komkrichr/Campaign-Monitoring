@@ -17,6 +17,7 @@ interface ChannelDraft {
   kpiValue: string;
   kpiUnit: KpiUnit;
   material: string;
+  details: string;
   format: string;
   demographic: string;
   targeting: string; // comma-separated
@@ -40,6 +41,7 @@ function blankChannel(): ChannelDraft {
     kpiValue: '',
     kpiUnit: 'IMPs',
     material: '',
+    details: '',
     format: '',
     demographic: '',
     targeting: '',
@@ -67,6 +69,7 @@ function toDraft(ch: ChannelPlan): ChannelDraft {
     kpiValue: numStr(ch.kpiValue),
     kpiUnit: ch.kpiUnit,
     material: ch.material,
+    details: ch.details ?? '',
     format: ch.format ?? '',
     demographic: ch.demographic ?? '',
     targeting: ch.targeting?.join(', ') ?? '',
@@ -127,6 +130,7 @@ export function CampaignForm({ initial, onSave, onCancel }: Props) {
       kpiValue: num(ch.kpiValue),
       kpiUnit: ch.kpiUnit,
       material: ch.material.trim(),
+      details: ch.details.trim() || undefined,
       format: ch.format.trim() || undefined,
       demographic: ch.demographic.trim() || undefined,
       targeting: ch.targeting
@@ -331,6 +335,17 @@ export function CampaignForm({ initial, onSave, onCancel }: Props) {
                   updateChannel(ch.id, { material: e.target.value })
                 }
                 placeholder="https://www.youtube.com/watch?v=..."
+              />
+            </div>
+            <div className="field">
+              <label>รายละเอียด</label>
+              <textarea
+                rows={2}
+                value={ch.details}
+                onChange={(e) =>
+                  updateChannel(ch.id, { details: e.target.value })
+                }
+                placeholder="รายละเอียดเพิ่มเติมของ channel นี้"
               />
             </div>
 

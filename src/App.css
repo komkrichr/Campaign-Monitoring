@@ -340,7 +340,8 @@
   color: var(--muted);
 }
 .field input,
-.field select {
+.field select,
+.field textarea {
   font-family: var(--sans);
   font-size: 16px;
   height: 44px;
@@ -354,8 +355,15 @@
 .field select {
   padding: 0 var(--s-sm);
 }
+.field textarea {
+  height: auto;
+  padding: var(--s-sm) var(--s-base);
+  line-height: 1.5;
+  resize: vertical;
+}
 .field input:focus,
-.field select:focus {
+.field select:focus,
+.field textarea:focus {
   outline: none;
   border-width: 2px;
   border-color: var(--ink);
@@ -558,23 +566,30 @@
 .chart-legend {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--s-sm) var(--s-base);
-  margin-top: var(--s-base);
-  padding-top: var(--s-base);
-  border-top: 1px solid var(--hairline);
+  gap: var(--s-xs) var(--s-lg);
+  margin-top: var(--s-sm);
+  padding-top: var(--s-sm);
 }
 .chart-legend__item {
   display: inline-flex;
   align-items: center;
   gap: var(--s-xs);
   font-size: 13px;
-  color: var(--body-strong);
+  color: var(--body);
 }
 .chart-legend__swatch {
   width: 14px;
   height: 3px;
   border-radius: 2px;
   flex-shrink: 0;
+}
+.chart-legend__tag {
+  color: var(--body-strong);
+}
+.chart-legend__value {
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ---------- Report card (client report fidelity) ---------- */

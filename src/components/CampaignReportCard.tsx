@@ -98,6 +98,12 @@ export function CampaignReportCard({ campaign: c, channel: ch }: Props) {
               <dt>TARGETING</dt>
               <dd>{ch.targeting?.length ? ch.targeting.join(', ') : '—'}</dd>
             </div>
+            {ch.details && (
+              <div className="spec__row">
+                <dt>รายละเอียด</dt>
+                <dd>{ch.details}</dd>
+              </div>
+            )}
           </dl>
         </section>
 

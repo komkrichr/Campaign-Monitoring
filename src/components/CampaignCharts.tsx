@@ -54,6 +54,11 @@ function TrendChart({
   tickEvery,
   resizeKey,
 }: ChartProps) {
+  const totals = hashtags.map((tag) => ({
+    tag,
+    total: data.reduce((sum, p) => sum + (Number(p[tag]) || 0), 0),
+  }));
+
   return (
     <div className="chart">
       <span className="chart__title">{title}</span>
@@ -110,6 +115,21 @@ function TrendChart({
           </LineChart>
         </ResponsiveContainer>
       </div>
+
+      <div className="chart-legend">
+        {totals.map(({ tag, total }, i) => (
+          <span key={tag} className="chart-legend__item">
+            <span
+              className="chart-legend__swatch"
+              style={{ background: SERIES_COLORS[i % SERIES_COLORS.length] }}
+            />
+            <span className="chart-legend__tag">{tag}</span>
+            <span className="chart-legend__value">
+              : {total.toLocaleString('en-US')}
+            </span>
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
@@ -143,18 +163,6 @@ export function CampaignCharts({ campaign }: Props) {
         tickEvery={tickEvery}
         resizeKey={resizeKey}
       />
-
-      <div className="chart-legend">
-        {series.hashtags.map((tag, i) => (
-          <span key={tag} className="chart-legend__item">
-            <span
-              className="chart-legend__swatch"
-              style={{ background: SERIES_COLORS[i % SERIES_COLORS.length] }}
-            />
-            {tag}
-          </span>
-        ))}
-      </div>
     </section>
   );
 }

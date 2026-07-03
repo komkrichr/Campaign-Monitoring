@@ -77,6 +77,8 @@ export interface ChannelPlan {
   kpiUnit: KpiUnit;
   /** Material / creative — a URL (e.g. YouTube link to the ad video). */
   material: string;
+  /** Free-text notes / details about this channel. */
+  details?: string;
   format?: string; // "VDO 15S NON-SKIPPABLE"
   demographic?: string; // "BOTH SEX 25-44, TH"
   targeting?: string[]; // ["AFFINITY", ...]
